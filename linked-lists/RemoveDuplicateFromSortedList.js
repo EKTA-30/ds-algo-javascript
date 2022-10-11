@@ -40,7 +40,9 @@ class Node {
   }
 let singleLL = new SingleLL();
 
-let head = singleLL.append([1,2,2,3,3]);
+let head = singleLL.append([1,2,2,3]);
+
+singleLL.printList(deleteDuplicates(head))
 
   function deleteDuplicates(head) {
     let temp = head;
@@ -51,6 +53,4 @@ let head = singleLL.append([1,2,2,3,3]);
             temp = temp.next;
     }
     return head;
-}
-
-singleLL.printList(deleteDuplicates(head));
+};
