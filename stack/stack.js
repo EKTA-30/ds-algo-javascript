@@ -101,7 +101,7 @@ class Stack{
 
             let curr = arr[i];
 
-            while(!this.isEmpty() && curr > this.peek())
+            while(!this.isEmpty() && curr >= this.peek())
                 this.pop();
             
             if(this.isEmpty())
@@ -110,6 +110,82 @@ class Stack{
                 res[i] = this.peek();
             this.push(curr);
             i--;
+        }
+        return res;
+
+    }
+    nextSmallestElement(arr){
+        let res = new Array(arr.length)
+        res.fill(0);
+        let n = res.length;
+        let i = n-2;
+        res[n-1] = -1;
+        this.push(arr[n-1]);
+
+        while(i>=0){
+
+            let curr = arr[i];
+
+            while(!this.isEmpty() && curr <= this.peek())
+                this.pop();
+            
+            if(this.isEmpty())
+                res[i] = -1;
+            else
+                res[i] = this.peek();
+            this.push(curr);
+            i--;
+        }
+        return res;
+
+    }
+
+    previousGreatestElement(arr){
+        let res = new Array(arr.length)
+        res.fill(0);
+        let n = res.length;
+        let i = 1;
+        res[0] = -1;
+        this.push(arr[0]);
+
+        while(i<n){
+
+            let curr = arr[i];
+
+            while(!this.isEmpty() && curr >= this.peek())
+                this.pop();
+            
+            if(this.isEmpty())
+                res[i] = -1;
+            else
+                res[i] = this.peek();
+            this.push(curr);
+            i++;
+        }
+        return res;
+
+    }
+    previousSmallestElement(arr){
+        let res = new Array(arr.length)
+        res.fill(0);
+        let n = res.length;
+        let i = 1;
+        res[0] = -1;
+        this.push(arr[0]);
+
+        while(i<n){
+
+            let curr = arr[i];
+
+            while(!(this.isEmpty()) && curr <= this.peek())
+                this.pop();
+            
+            if(this.isEmpty())
+                res[i] = -1;
+            else
+                res[i] = this.peek();
+            this.push(curr);
+            i++;
         }
         return res;
 
@@ -150,7 +226,7 @@ let stack = new Stack();
 
 let arr = [4,12,5,3,1,2,5,3,1,2,4,6];
 
-let res = stack.nextGreaterElement(arr)
+let res = stack.previousSmallestElement(arr)
 
 console.log(res);
 
