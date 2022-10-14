@@ -65,21 +65,8 @@ class Node {
                 head = head.next;
             }
         }
-        while(list1)
-        {
-            head.next = list1;
-            list1 = list1.next;
-            head = head.next;
-        }
         
-        while(list2)
-        {
-            head.next = list2;
-            list2 = list2.next;
-            head = head.next;
-        }
-        
-         this.printList(newLL.next);
+        head.next = (list1 == null) ? list2:list1;
          return newLL.next;
         }
     printList(head) {
@@ -96,7 +83,7 @@ class Node {
 let singleLL = new SingleLL();
 let singleLL1 = new SingleLL();
 let singleLL2 = new SingleLL();
-  let arr1 = [4,2,1,3];
+  let arr1 = [4,2,1,3,9,0];
   // let arr2 = [1,3,4];
 
 let list1 = singleLL1.append(arr1);

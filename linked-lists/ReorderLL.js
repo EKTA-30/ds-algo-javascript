@@ -100,7 +100,7 @@ function reverse(head){
 
 
 function merge(l1,l2){
-    while(l1){
+    while(l1 && l2){
         let l1_next = l1.next;
         let l2_next = l2.next;
         
@@ -116,5 +116,7 @@ function merge(l1,l2){
 
 let singleLL = new SingleLL();
 
-let head = singleLL.append([1,2,3,4,5,6,7,8]);
+let head = singleLL.append([1,2,3,4,5,6,7]);
 reorderList(head);
+
+singleLL.printList(head)

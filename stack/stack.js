@@ -140,17 +140,19 @@ class Stack{
 
     }
 
-    previousGreatestElement(arr){
+   
+     previousGreatestElementIndices(arr){
         let res = new Array(arr.length)
         res.fill(0);
         let n = res.length;
-        let i = 1;
-        res[0] = -1;
+        let i = 0;
+        // res[0] = -1;
         this.push(arr[0]);
 
         while(i<n){
 
             let curr = arr[i];
+            // console.log(curr,this.peek());
 
             while(!this.isEmpty() && curr >= this.peek())
                 this.pop();
@@ -158,7 +160,11 @@ class Stack{
             if(this.isEmpty())
                 res[i] = -1;
             else
-                res[i] = this.peek();
+            {
+                // console.log(this.top, this.peek());
+                res[i] = arr.indexOf(this.peek());
+                // console.log(this.peek(), this.top);
+            }
             this.push(curr);
             i++;
         }
@@ -224,9 +230,20 @@ class Stack{
 
 let stack = new Stack();
 
-let arr = [4,12,5,3,1,2,5,3,1,2,4,6];
+let arr = [100,80,60,70,60,75,80];
+let res = stack.previousGreatestElementIndices(arr);
 
-let res = stack.previousSmallestElement(arr)
+let span = stockSpanProblem(res,arr);
+console.log(span);
+
+function stockSpanProblem(res,arr){
+    let span = new Array(arr.length);
+    span.fill(0);
+    for(let i=0;i<span.length;i++)
+        span[i] = i - res[i];
+
+        return span;
+}
 
 console.log(res);
 
