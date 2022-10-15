@@ -89,31 +89,44 @@ class Stack{
         this.push(temp);
     }
 
-    nextGreaterElement(arr){
-        let res = new Array(arr.length)
-        res.fill(0);
-        let n = res.length;
-        let i = n-2;
-        res[n-1] = -1;
-        this.push(arr[n-1]);
-
-        while(i>=0){
-
-            let curr = arr[i];
-
-            while(!this.isEmpty() && curr >= this.peek())
-                this.pop();
-            
-            if(this.isEmpty())
-                res[i] = -1;
-            else
-                res[i] = this.peek();
-            this.push(curr);
-            i--;
+        nextGreaterElements2(nums) {
+        let numbers = new Array(2*nums.length);
+        let index = 0;
+        for(let i=0;i<nums.length;i++){
+            numbers[index++] = nums[i];
         }
-        return res;
-
-    }
+          for(let i=0;i<nums.length;i++){
+            numbers[index++] = nums[i];
+        }
+        let res = this.nextGreaterElement(numbers);
+        let result = res.slice(0,parseInt(numbers.length/2));
+        return result;
+        }
+        nextGreaterElement(arr){
+            let res = new Array(arr.length)
+            res.fill(0);
+            let n = res.length;
+            let i = n-2;
+            res[n-1] = -1;
+            this.push(arr[n-1]);
+    
+            while(i>=0){
+    
+                let curr = arr[i];
+    
+                while(!this.isEmpty() && curr >= this.peek())
+                    this.pop();
+                
+                if(this.isEmpty())
+                    res[i] = -1;
+                else
+                    res[i] = this.peek();
+                this.push(curr);
+                i--;
+            }
+            return res;
+    
+        }
     nextSmallestElement(arr){
         let res = new Array(arr.length)
         res.fill(0);
@@ -229,23 +242,24 @@ class Stack{
 }
 
 let stack = new Stack();
+let arr = [1,2,3,4,3];
+console.log(stack.nextGreaterElements2(arr));
 
-let arr = [100,80,60,70,60,75,80];
-let res = stack.previousGreatestElementIndices(arr);
+// let arr = [100,80,60,70,60,75,80];
+// let res = stack.previousGreatestElementIndices(arr);
 
-let span = stockSpanProblem(res,arr);
-console.log(span);
+// let span = stockSpanProblem(res,arr);
+// console.log(span);
 
-function stockSpanProblem(res,arr){
-    let span = new Array(arr.length);
-    span.fill(0);
-    for(let i=0;i<span.length;i++)
-        span[i] = i - res[i];
+// function stockSpanProblem(res,arr){
+//     let span = new Array(arr.length);
+//     span.fill(0);
+//     for(let i=0;i<span.length;i++)
+//         span[i] = i - res[i];
 
-        return span;
-}
+//         return span;
+// }
 
-console.log(res);
+// console.log(res);
 
-// stack.sortStack();
-// stack.print();
+
