@@ -39,6 +39,23 @@ class SingleLL {
     }
     // this.printList(this.head)
   }
+  
+  appendDataSet(dataSet) {
+   for(let data of dataSet){
+    if (this.head == null) {
+      let newNode = new Node(data);
+      this.head = newNode;
+      this.tail = newNode;
+      this.length++;
+    } else {
+      let newNode = new Node(data);
+      this.tail.next = newNode;
+      this.tail = newNode;
+      this.length++;
+    }
+   }
+    return this.head;
+  }
   insertNodeAtPosition(pos, data) {
     if (pos < 1 || pos > this.length + 1) {
       console.log("Invalid position");
@@ -123,6 +140,29 @@ class SingleLL {
         this.printList(this.head)
     }
   }
+  rotate(head,k){
+    if(this.head == null || this.head.next == null)
+        return head;
+    let temp = this.head;
+    let count =1;
+    while(count < k){
+        temp = temp.next;
+        count++;
+    } 
+
+    let kthNode = temp;
+    let newHead = kthNode.next;
+    while(temp.next){
+        temp = temp.next;
+    }
+    let lastNode = temp;
+
+    kthNode.next = null;
+    lastNode.next = this.head;
+
+    this.head = lastNode;
+    return this.head;
+}
 
   printList(head) {
     let temp = head,
@@ -136,8 +176,10 @@ class SingleLL {
 }
 
 let singleLL = new SingleLL();
-singleLL.insertNodeAtPosition(1, 1);
-singleLL.insertNodeAtPosition(2, 4);
-singleLL.insertNodeAtPosition(2, 3);
-singleLL.insertNodeAtPosition(2, 2);
-singleLL.removeFromAPos(4);
+let head = singleLL.appendDataSet([1,2,3,4,5,6]);
+singleLL.printList(head);
+let rotatedHead = singleLL.rotate(head,3);
+singleLL.printList(rotatedHead);
+
+
+// module.exports = {SingleLL};
