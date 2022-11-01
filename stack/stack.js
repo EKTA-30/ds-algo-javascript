@@ -30,29 +30,6 @@ class Stack{
         return this.data[this.top]
     }
 
-    // insertElementAtBottom(value) {
-    //     if (this.isEmpty()) {
-    //     this.push(value);
-    //     return;
-    //     }
-    //     const tmp = this.peek();
-    //     this.pop();
-    //     this.insertElementAtBottom(value);
-    //     this.push(tmp);
-    //     return;
-    // }
-
-    // reverse(){
-    //     if(this.isEmpty())
-    //     return;
-
-    //     let temp = this.peek()
-    //     this.pop();
-    //     this.reverse();
-    //     this.insertElementAtBottom(temp);
-
-    //     // this.print()
-    // }
 
     sortStack(){
         if(this.isEmpty())
@@ -242,8 +219,8 @@ class Stack{
 }
 
 let stack = new Stack();
-let arr = [1,2,3,4,3];
-console.log(stack.nextGreaterElements2(arr));
+let arr = [3,1,4,2];
+console.log(stack.nextSmallestElement(arr));
 
 // let arr = [100,80,60,70,60,75,80];
 // let res = stack.previousGreatestElementIndices(arr);
