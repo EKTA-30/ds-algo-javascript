@@ -40,15 +40,15 @@ class BST{
         }
     }
     
-    sumGreaterNodes(){
-    if(this.root.right != null)
-        this.sumGreaterNodes(this.root.right);
-    
-    pre = this.root.value = pre+this.root.value;
-
-     if(this.root.left != null)
-        this.sumGreaterNodes(this.root.left);
-}
+  sumGreaterNodes() {
+	let pre = 0;
+	function calNodes(node){
+		if (node.right != null) calNodes(node.right);
+		pre = node.value = pre + node.value;
+		if (node.left != null) calNodes(node.left);
+	}
+   calNodes(this.root);
+  }
 
 printTree(){
     console.log(this.root);
